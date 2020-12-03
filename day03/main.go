@@ -41,8 +41,7 @@ func plusIt(trees func(grid2d [][]string, stepsX int, stepsY int) (trees int), g
 func countTrees(grid2d [][]string, stepsX int, stepsY int) (trees int) {
 	var x, y int
 	for y < len(grid2d) {
-		x = x % len(grid2d[y])
-		trees, x, y = trees + strings.Count(grid2d[y][x], TREE_VALUE), x+stepsX, y+stepsY
+		trees, x, y = trees + strings.Count(grid2d[y][x % len(grid2d[y])], TREE_VALUE), x+stepsX, y+stepsY
 	}
 	return trees
 }
