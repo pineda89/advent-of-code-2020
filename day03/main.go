@@ -25,12 +25,12 @@ func main() {
 	part1 := countTrees(grid2d, 3, 1)
 	fmt.Println("part1", part1)
 
-	part2 := plusIt(countTrees, grid2d, []*XY{{3, 1},{1, 1}, {5, 1}, {7, 1}, {1, 2}})
+	part2 := plusIt(countTrees, grid2d, []XY{{3, 1},{1, 1}, {5, 1}, {7, 1}, {1, 2}})
 	fmt.Println("part2", part2)
 
 }
 
-func plusIt(trees func(grid2d [][]string, stepsX int, stepsY int) (trees int), grid2d [][]string, xies []*XY) (plus int) {
+func plusIt(trees func(grid2d [][]string, stepsX int, stepsY int) (trees int), grid2d [][]string, xies []XY) (plus int) {
 	plus = 1
 	for _, v := range xies {
 		plus = plus * trees(grid2d, v.X, v.Y)
