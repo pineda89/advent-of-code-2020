@@ -26,17 +26,11 @@ func main() {
 		}
 	}
 
-	var numOfChanges int = 1
-	for numOfChanges > 0 {
-		seats, numOfChanges = moveOfSeatsPlease(seats, 4, false)
-	}
+	for numOfChanges := 1; numOfChanges > 0; seats, numOfChanges = moveOfSeatsPlease(seats, 4, false) {}
 
 	fmt.Println("part 1:",countState(seats, OCCUPIED_SEAT))
 
-	numOfChanges = 1
-	for numOfChanges > 0 {
-		seatspart2, numOfChanges = moveOfSeatsPlease(seatspart2, 5, true)
-	}
+	for numOfChanges := 1; numOfChanges > 0; seatspart2, numOfChanges = moveOfSeatsPlease(seatspart2, 5, true) {}
 
 	fmt.Println("part 2:", countState(seatspart2, OCCUPIED_SEAT))
 }
@@ -62,13 +56,11 @@ func moveOfSeatsPlease(s [][]string, maxAdjacents int, checkViews bool) ([][]str
 		for y:=0;y<len(s[x]);y++ {
 			switch s[x][y] {
 			case EMPTY_SEAT:
-				// If a seat is empty (L) and there are no occupied seats adjacent to it, the seat becomes occupied.
 				if occuppiedAdjacents(s, x, y, checkViews) == 0 {
 					copiedS[x][y] = OCCUPIED_SEAT
 					numOfChanges++
 				}
 			case OCCUPIED_SEAT:
-				// If a seat is occupied (#) and four or more seats adjacent to it are also occupied, the seat becomes empty.
 				if occuppiedAdjacents(s, x, y, checkViews) >= maxAdjacents {
 					copiedS[x][y] = EMPTY_SEAT
 					numOfChanges++
